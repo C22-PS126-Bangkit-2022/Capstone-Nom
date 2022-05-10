@@ -1,4 +1,4 @@
-package com.bangkit.capstonenom.ui.home
+package com.bangkit.capstonenom.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
