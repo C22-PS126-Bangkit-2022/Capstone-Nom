@@ -1,5 +1,6 @@
 package com.bangkit.capstonenom.ui.fragment.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstonenom.databinding.FragmentHomeBinding
+import com.bangkit.capstonenom.ui.activity.add.AddFoodActivity
 
 class HomeFragment : Fragment() {
 
@@ -28,11 +30,26 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.tvWelcome
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding.btnTakeFood.setOnClickListener {
+            GoTo()
+        }
+    }
+
+    private fun GoTo() {
+        val intent = Intent(context, AddFoodActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
 
     override fun onDestroyView() {
