@@ -17,5 +17,12 @@
     <string name="result">Result</string>
     <string name="take_a_photo">Take a photo</string>
     <string name="permission_denied">Permission Denied</string>
+    <string name="search_your_food">Search Your Food</string>
+    <string name="search_button">Search Button</string>
+    <string name="user_account">User Account</string>
+    <string name="nutrition_history">Nutrition History</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="app_version">App Version</string>
+    <string name="version">1.0.0</string>
 
 </resources>

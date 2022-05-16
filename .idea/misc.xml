@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/drawable/ic_search.xml" value="0.1175" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/activity_add_food.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/activity_add_food2.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/activity_login.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/food_row.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/fragment_food.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/fragment_history.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/fragment_home.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/fragment_settings.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/ic_search.xml" value="0.14130434782608695" />
+        <entry key="..\:/DICODING/Kotlin_AStudio/Capstone-Nom/app/src/main/res/layout/item_row_food.xml" value="0.14130434782608695" />
         <entry key="..\:/capstone/CapstoneNom/app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="..\:/capstone/CapstoneNom/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/capstone/CapstoneNom/app/src/main/res/layout/activity_main.xml" value="0.2" />
