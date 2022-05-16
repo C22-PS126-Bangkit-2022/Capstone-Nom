@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("http://platform.fatsecret.com/api/1.0/")
-    @Headers("Authorization")
+    @Headers("Authorization token 80ea633299324887820244d122c59f71")
     fun getSearchFood(
-        @Query("method") method: String
+        @Query("food.search") method: String
     ): Call<FoodResponse>
 }
