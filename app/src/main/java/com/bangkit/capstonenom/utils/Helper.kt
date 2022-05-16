@@ -23,17 +23,4 @@ fun createTempFile(context: Context): File {
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
 
-//fun uriToFile(selectedImg: Uri, context: Context): File {
-//    val contentResolver: ContentResolver = context.contentResolver
-//    val myFile = createTempFile(context)
-//
-//    val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
-//    val outputStream: OutputStream = FileOutputStream(myFile)
-//    val buf = ByteArray(1024)
-//    var len: Int
-//    while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
-//    outputStream.close()
-//    inputStream.close()
-//
-//    return myFile
-//}
+// TEST
