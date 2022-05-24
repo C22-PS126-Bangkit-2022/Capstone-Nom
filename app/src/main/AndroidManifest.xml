@@ -20,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneNom">
         <activity
-            android:name=".ui.add.AddFoodActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activity.add.AddFoodActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.main.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -35,14 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.login.LoginActivity"
-            android:exported="true" /> <!-- android:label="@string/app_name"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.bangkit.capstonenom"

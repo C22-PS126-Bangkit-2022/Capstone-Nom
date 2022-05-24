@@ -1,54 +1,61 @@
 package com.bangkit.capstonenom.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.databinding.ItemRowFoodBinding
 import com.bangkit.capstonenom.model.Food
 import com.bumptech.glide.Glide
+import java.util.ArrayList
 
-class FoodAdapter: RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ListViewHolder>() {
 
-    private val list = ArrayList<Food>()
+    private var listData = ArrayList<Food>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    interface OnItemClickCallback{
+    interface OnItemClickCallback {
         fun onItemClicked(data: Food)
     }
 
-    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodAdapter.FoodViewHolder {
-        val view = ItemRowFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FoodViewHolder(view)
+    fun setListData(newListData: List<Food>?) {
+        if (newListData == null) return
+        listData.clear()
+        listData.addAll(newListData)
+        notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: FoodAdapter.FoodViewHolder, position: Int) {
-        holder.bind(list[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ListViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_food, parent, false)
+        )
+
+    override fun getItemCount() = listData.size
+
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        val data = listData[position]
+        holder.bind(data)
     }
 
-    override fun getItemCount(): Int = list.size
-
-    inner class FoodViewHolder(val binding: ItemRowFoodBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(food: Food){
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemRowFoodBinding.bind(itemView)
+        fun bind(food: Food) {
             binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(food)
             }
-
             binding.apply {
-                tvItemName.text = food.food_name
+                tvItemName.text = food.name
                 Glide.with(itemView)
-                    .load(imgItemFood)
+                    .load(food.imageUrl)
+                    .placeholder(R.drawable.anim_progress_icon)
+                    .error(R.drawable.ic_place_holder)
                     .into(imgItemFood)
             }
         }
-    }
-
-    fun setList(users: ArrayList<Food>){
-        list.clear()
-        list.addAll(users)
-        notifyDataSetChanged()
     }
 }

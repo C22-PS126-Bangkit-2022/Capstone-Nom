@@ -1,15 +1,12 @@
 package com.bangkit.capstonenom.api
 
-import com.bangkit.capstonenom.model.FoodResponse
-import retrofit2.Call
+import com.bangkit.capstonenom.response.FoodResponse
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("http://platform.fatsecret.com/api/1.0/")
-    @Headers("Authorization token 80ea633299324887820244d122c59f71")
-    fun getSearchFood(
-        @Query("food.search") method: String
-    ): Call<FoodResponse>
+    @GET("search?apiKey=d4e160b3da9a4359b964f89a89db54e6")
+    suspend fun getFoodListByName(
+        @Query("query") query: String
+    ): FoodResponse
 }
