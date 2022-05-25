@@ -14,7 +14,6 @@
     <string name="close">Close</string>
     <string name="camera">Camera</string>
     <string name="image_preview">Image Preview</string>
-    <string name="result">Result</string>
     <string name="take_a_photo">Take a photo</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="search_your_food">Search Your Food</string>
@@ -24,5 +23,6 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="app_version">App Version</string>
     <string name="version">1.0.0</string>
+    <string name="result">Result</string>
 
 </resources>

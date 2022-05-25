@@ -16,16 +16,39 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.databinding.ActivityAddFoodBinding
+import com.bangkit.capstonenom.ui.activity.camera.CameraActivity
+import com.bangkit.capstonenom.utils.rotateBitmap
 import java.io.File
 
 
 class AddFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddFoodBinding
-    private var getFile: File? = null
 
     companion object {
+        const val CAMERA_X_RESULT = 200
+
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(
+                    this,
+                    "Tidak mendapatkan permission.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+        }
+    }
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +58,7 @@ class AddFoodActivity : AppCompatActivity() {
 
         val actionbar = supportActionBar
         //set actionbar title
-        actionbar!!.title = "Back Home"
+        actionbar!!.title = "Back  "
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
@@ -48,72 +71,39 @@ class AddFoodActivity : AppCompatActivity() {
             )
         }
 
-        binding.btnCamera.setOnClickListener {
-            startTakePhoto()
-        }
-        binding.btnResult.setOnClickListener {
-            result()
-        }
+        binding.cameraButton.setOnClickListener { startTakePhoto() }
+        binding.uploadButton.setOnClickListener { viewResult() }
     }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
-    private fun result() {
-        showLoading(true)
-        // function not created
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_LONG)
-                    .show()
-                finish()
-            }
-        }
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private lateinit var currentPhotoPath: String
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == RESULT_OK) {
-            val myFile = File(currentPhotoPath)
-            val result = BitmapFactory.decodeFile(myFile.path)
-
-            getFile = myFile
-            binding.previewImg.setImageBitmap(result)
-        }
+    private fun viewResult() {
+        Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_SHORT).show()
     }
 
     private fun startTakePhoto() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(packageManager)
-        com.bangkit.capstonenom.utils.createTempFile(application).also {
-            val photoURI: Uri = FileProvider.getUriForFile(
-                this@AddFoodActivity,
-                "com.bangkit.capstonenom",
-                it
+        val intent = Intent(this, CameraActivity::class.java)
+        launcherCamera.launch(intent)
+    }
+
+    private val launcherCamera = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == CAMERA_X_RESULT) {
+            val myFile = it.data?.getSerializableExtra("picture") as File
+            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+
+            val result = rotateBitmap(
+                BitmapFactory.decodeFile(myFile.path),
+                isBackCamera
             )
-            currentPhotoPath = it.absolutePath
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            launcherIntentCamera.launch(intent)
+
+            binding.previewImageView.setImageBitmap(result)
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
+
+
 }
