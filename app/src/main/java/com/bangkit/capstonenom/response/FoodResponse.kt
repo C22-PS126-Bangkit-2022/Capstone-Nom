@@ -14,5 +14,5 @@ data class FoodResponse(
     val totalResults: String,
 
     @field:SerializedName("results")
-    val ingredientList: List<FoodInformationResponse>
+    val caloriesList: List<FoodInformationResponse>,
 )

@@ -1,6 +1,7 @@
 package com.bangkit.capstonenom.utils
 
 import com.bangkit.capstonenom.api.ApiService
+import com.bangkit.capstonenom.response.FoodInformationResponse
 import com.bangkit.capstonenom.response.FoodResponse
 
 class DataSource(private val apiService: ApiService) {
@@ -17,4 +18,5 @@ class DataSource(private val apiService: ApiService) {
     suspend fun getFoodResponse(name: String): FoodResponse {
         return apiService.getFoodListByName(name)
     }
+
 }

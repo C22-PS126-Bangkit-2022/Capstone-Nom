@@ -1,5 +1,6 @@
 package com.bangkit.capstonenom.ui.fragment.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.capstonenom.adapter.FoodAdapter
 import com.bangkit.capstonenom.databinding.FragmentFoodBinding
 import com.bangkit.capstonenom.databinding.FragmentHomeBinding
+import com.bangkit.capstonenom.model.Food
 import com.bangkit.capstonenom.ui.activity.add.AddFoodActivity
+import com.bangkit.capstonenom.ui.activity.detail.FoodDetailActivity
 import com.bangkit.capstonenom.ui.fragment.food.FoodViewModel
 import com.bangkit.capstonenom.utils.ViewModelFactory
 
@@ -44,6 +47,15 @@ class HomeFragment : Fragment() {
         binding.btnTakeFood.setOnClickListener {
             GoTo()
         }
+
+        foodAdapter.setOnItemClickCallback(object : FoodAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Food) {
+                Intent(context, FoodDetailActivity::class.java).also {
+                    it.putExtra(FoodDetailActivity.EXTRA_ID, data.id)
+                    startActivity(it)
+                }
+            }
+        })
 
         searchFood()
         viewModel()

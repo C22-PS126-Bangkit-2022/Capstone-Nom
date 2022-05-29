@@ -11,13 +11,14 @@ class Repository(private val dataSource: DataSource) {
         try {
             val ingredientSearchResponse: FoodResponse = dataSource.getFoodResponse(name)
             val ingredientListResponse: List<FoodInformationResponse> =
-                ingredientSearchResponse.ingredientList
+                ingredientSearchResponse.caloriesList
             ingredientListResponse.forEach { ingredientResponse ->
                 foodList.add(
                     Food(
                         ingredientResponse.id,
                         ingredientResponse.name,
                         "https://spoonacular.com/cdn/ingredients_500x500/" + ingredientResponse.image
+
                     )
                 )
             }

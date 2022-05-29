@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.detail.FoodDetailActivity">
+
+    <ImageView
+        android:id="@+id/img_item_food"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="@+id/img_item_food"
+        app:layout_constraintTop_toBottomOf="@+id/img_item_food" />
+
+    <TextView
+        android:id="@+id/tv_nutrtion_facts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Nutrtion Fact"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_serving_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Serving size 100g"
+        app:layout_constraintStart_toStartOf="@+id/tv_nutrtion_facts"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nutrtion_facts" />
+
+    <TextView
+        android:id="@+id/tv_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Calories 100g"
+        app:layout_constraintStart_toStartOf="@+id/tv_serving_size"
+        app:layout_constraintTop_toBottomOf="@+id/tv_serving_size" />
+
+    <TextView
+        android:id="@+id/tv_carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Carbs 100g"
+        app:layout_constraintStart_toStartOf="@+id/tv_calories"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calories" />
+
+    <TextView
+        android:id="@+id/tv_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Fat 100g"
+        app:layout_constraintStart_toStartOf="@+id/tv_carbs"
+        app:layout_constraintTop_toBottomOf="@+id/tv_carbs" />
+
+    <TextView
+        android:id="@+id/tv_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Protein 100g"
+        app:layout_constraintStart_toStartOf="@+id/tv_fat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
