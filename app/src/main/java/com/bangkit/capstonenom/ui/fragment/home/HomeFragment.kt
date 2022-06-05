@@ -64,7 +64,6 @@ class HomeFragment : Fragment() {
         foodAdapter.setOnItemClickCallback(object : FoodAdapter.OnItemClickCallback{
             override fun onItemClicked(data: Food) {
                 Intent(context, FoodDetailActivity::class.java).also {
-                    it.putExtra(FoodDetailActivity.EXTRA_ID, data.id)
                     startActivity(it)
                 }
             }

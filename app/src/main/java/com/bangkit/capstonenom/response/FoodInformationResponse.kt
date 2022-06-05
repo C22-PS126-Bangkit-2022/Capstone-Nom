@@ -23,6 +23,9 @@ data class FoodInformationResponse (
 
 data class Nutrition(
 
+    @field:SerializedName("title")
+    val title: String,
+
     @field:SerializedName("amount")
     val amount: Double,
 

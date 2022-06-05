@@ -1,6 +1,7 @@
 package com.bangkit.capstonenom.utils
 
 import com.bangkit.capstonenom.model.Food
+import com.bangkit.capstonenom.model.FoodInformation
 import com.bangkit.capstonenom.response.FoodInformationResponse
 import com.bangkit.capstonenom.response.FoodResponse
 
@@ -42,6 +43,34 @@ class Repository(private val dataSource: DataSource) {
             }
         }
         return foodList
+    }
+
+    suspend fun getFoodById(id: Int): FoodInformation {
+        try {
+            val foodInformationResponse = dataSource.getFoodById(id)
+            return FoodInformation(
+                foodInformationResponse.id,
+                foodInformationResponse.name,
+                "https://spoonacular.com/cdn/ingredients_500x500/" + foodInformationResponse.image,
+                foodInformationResponse.nutrition
+            )
+        } catch (e: Exception) {
+            if (e.message.toString().replace("\\s".toRegex(), "") == "HTTP402") {
+                return FoodInformation(
+                    -1,
+                    "API Limit Exceeded",
+                    "https://spoonacular.com/cdn/ingredients_500x500/" + "error.jpg",
+                    emptyList()
+                )
+            } else {
+                return FoodInformation(
+                    -1,
+                    "Something went wrong",
+                    "https://spoonacular.com/cdn/ingredients_500x500/" + "error.jpg",
+                    emptyList()
+                )
+            }
+        }
     }
 
     companion object {

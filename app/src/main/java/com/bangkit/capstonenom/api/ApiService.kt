@@ -17,5 +17,5 @@ interface ApiService {
     @GET("{id}/information?amount=1&apiKey=d4e160b3da9a4359b964f89a89db54e6")
     fun getDetailFood(
         @Query("id") id: Int
-    ): Call<FoodInformationResponse>
+    ): FoodInformationResponse
 }

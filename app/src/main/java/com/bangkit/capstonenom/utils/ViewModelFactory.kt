@@ -16,6 +16,9 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(mRepository) as T
             }
+            modelClass.isAssignableFrom(FoodDetailViewModel::class.java) -> {
+                FoodDetailViewModel(mRepository) as T
+            }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

@@ -19,4 +19,7 @@ class DataSource(private val apiService: ApiService) {
         return apiService.getFoodListByName(name)
     }
 
+    suspend fun getFoodById(id: Int): FoodInformationResponse {
+        return apiService.getDetailFood(id)
+    }
 }
