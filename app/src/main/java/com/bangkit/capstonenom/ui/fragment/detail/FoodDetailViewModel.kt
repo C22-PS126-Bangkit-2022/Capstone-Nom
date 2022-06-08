@@ -1,4 +1,4 @@
-package com.bangkit.capstonenom.ui.activity.detail
+package com.bangkit.capstonenom.ui.fragment.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -17,9 +17,9 @@ import retrofit2.Response
 class FoodDetailViewModel(private val mRepository: Repository): ViewModel() {
     private val food = MutableLiveData<FoodInformation>()
 
-    fun getFoodDetailsById(id: Int): LiveData<FoodInformation> {
+    fun getFoodDetail(id: Int): LiveData<FoodInformation> {
         viewModelScope.launch {
-            food.value = mRepository.getFoodById(id)
+            food.value = mRepository.getDetailFood(id)
         }
         return food
     }

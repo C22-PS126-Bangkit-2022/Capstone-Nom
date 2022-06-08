@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstonenom.injection.Injection
-import com.bangkit.capstonenom.ui.activity.detail.FoodDetailViewModel
+import com.bangkit.capstonenom.ui.fragment.detail.FoodDetailViewModel
 import com.bangkit.capstonenom.ui.fragment.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val mRepository: Repository) :

@@ -2,15 +2,14 @@ package com.bangkit.capstonenom.utils
 
 import com.bangkit.capstonenom.model.Food
 import com.bangkit.capstonenom.model.FoodInformation
-import com.bangkit.capstonenom.response.FoodInformationResponse
-import com.bangkit.capstonenom.response.FoodResponse
+import com.bangkit.capstonenom.response.*
 
 class Repository(private val dataSource: DataSource) {
 
     suspend fun getFoodList(name: String): ArrayList<Food> {
         val foodList: ArrayList<Food> = arrayListOf()
         try {
-            val ingredientSearchResponse: FoodResponse = dataSource.getFoodResponse(name)
+            val ingredientSearchResponse: FoodResponse = dataSource.getSearchFood(name)
             val ingredientListResponse: List<FoodInformationResponse> =
                 ingredientSearchResponse.caloriesList
             ingredientListResponse.forEach { ingredientResponse ->
@@ -45,14 +44,16 @@ class Repository(private val dataSource: DataSource) {
         return foodList
     }
 
-    suspend fun getFoodById(id: Int): FoodInformation {
+    suspend fun getDetailFood(id: Int): FoodInformation {
         try {
-            val foodInformationResponse = dataSource.getFoodById(id)
+            val foodInformationResponse = dataSource.getDetailFood(id)
             return FoodInformation(
                 foodInformationResponse.id,
                 foodInformationResponse.name,
                 "https://spoonacular.com/cdn/ingredients_500x500/" + foodInformationResponse.image,
-                foodInformationResponse.nutrition
+                foodInformationResponse.nutrition.weightPerServing,
+                foodInformationResponse.nutrition.caloricBreakdown,
+                foodInformationResponse.nutrition.nutrients
             )
         } catch (e: Exception) {
             if (e.message.toString().replace("\\s".toRegex(), "") == "HTTP402") {
@@ -60,6 +61,8 @@ class Repository(private val dataSource: DataSource) {
                     -1,
                     "API Limit Exceeded",
                     "https://spoonacular.com/cdn/ingredients_500x500/" + "error.jpg",
+                    WeightPerServing(0, ""),
+                    CaloricBreakdown(0.0, 0.0, 0.0),
                     emptyList()
                 )
             } else {
@@ -67,6 +70,8 @@ class Repository(private val dataSource: DataSource) {
                     -1,
                     "Something went wrong",
                     "https://spoonacular.com/cdn/ingredients_500x500/" + "error.jpg",
+                    WeightPerServing(0, ""),
+                    CaloricBreakdown(0.0, 0.0, 0.0),
                     emptyList()
                 )
             }

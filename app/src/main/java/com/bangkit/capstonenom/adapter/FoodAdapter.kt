@@ -13,15 +13,7 @@ import java.util.ArrayList
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<Food>()
-    private var onItemClickCallback: OnItemClickCallback? = null
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: Food)
-    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
+    var onItemClick: ((Food) -> Unit)? = null
 
     fun setListData(newListData: List<Food>?) {
         if (newListData == null) return
@@ -44,10 +36,8 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemRowFoodBinding.bind(itemView)
+
         fun bind(food: Food) {
-            binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClicked(food)
-            }
             binding.apply {
                 tvItemName.text = food.name
                 Glide.with(itemView)
@@ -55,6 +45,10 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ListViewHolder>() {
                     .placeholder(R.drawable.anim_progress_icon)
                     .error(R.drawable.ic_place_holder)
                     .into(imgItemFood)
+            }
+        }
+        init {binding.root.setOnClickListener {
+            onItemClick?.invoke(listData[adapterPosition])
             }
         }
     }

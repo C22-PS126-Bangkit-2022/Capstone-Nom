@@ -5,6 +5,14 @@ import com.bangkit.capstonenom.response.FoodInformationResponse
 import com.bangkit.capstonenom.response.FoodResponse
 
 class DataSource(private val apiService: ApiService) {
+    suspend fun getSearchFood(name: String): FoodResponse {
+        return apiService.getSearchFood(name)
+    }
+
+    suspend fun getDetailFood(id: Int): FoodInformationResponse {
+        return apiService.getDetailFood(id)
+    }
+
     companion object {
         @Volatile
         private var instance: DataSource? = null
@@ -13,13 +21,5 @@ class DataSource(private val apiService: ApiService) {
             instance ?: synchronized(this) {
                 instance ?: DataSource(apiService).apply { instance = this }
             }
-    }
-
-    suspend fun getFoodResponse(name: String): FoodResponse {
-        return apiService.getFoodListByName(name)
-    }
-
-    suspend fun getFoodById(id: Int): FoodInformationResponse {
-        return apiService.getDetailFood(id)
     }
 }

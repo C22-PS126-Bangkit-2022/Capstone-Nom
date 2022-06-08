@@ -4,32 +4,25 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.adapter.FoodAdapter
-import com.bangkit.capstonenom.databinding.FragmentFoodBinding
 import com.bangkit.capstonenom.databinding.FragmentHomeBinding
-import com.bangkit.capstonenom.model.Food
 import com.bangkit.capstonenom.ui.activity.add.AddFoodActivity
-import com.bangkit.capstonenom.ui.activity.detail.FoodDetailActivity
-import com.bangkit.capstonenom.ui.fragment.food.FoodViewModel
 import com.bangkit.capstonenom.ui.fragment.settings.SettingsViewModel
 import com.bangkit.capstonenom.ui.fragment.settings.darkmode.SettingPreferences
 import com.bangkit.capstonenom.utils.ViewModelFactory
-import com.google.android.material.switchmaterial.SwitchMaterial
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -46,31 +39,22 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        return binding.root
     }
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        foodAdapter = FoodAdapter()
 
         _binding = FragmentHomeBinding.bind(view)
 
         binding.btnTakeFood.setOnClickListener {
-            GoTo()
+            goTo()
         }
-
-        foodAdapter.setOnItemClickCallback(object : FoodAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: Food) {
-                Intent(context, FoodDetailActivity::class.java).also {
-                    startActivity(it)
-                }
-            }
-        })
 
         searchFood()
         viewModel()
+        getFoodDetail()
         recyclerView()
 
         val pref = SettingPreferences.getInstance(requireContext().dataStore)
@@ -121,7 +105,7 @@ class HomeFragment : Fragment() {
 
     private fun recyclerView() {
         with(binding.rvFood) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,2)
             setHasFixedSize(true)
             adapter = foodAdapter
         }
@@ -134,7 +118,18 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun GoTo() {
+    private fun getFoodDetail(){
+        foodAdapter = FoodAdapter()
+        foodAdapter.onItemClick = { selectedFood ->
+            intentToDetail(selectedFood.id)}
+    }
+
+    private fun intentToDetail(id: Int){
+        val action = HomeFragmentDirections.actionNavigationToDetail(id = id)
+        findNavController().navigate(action)
+    }
+
+    private fun goTo() {
         val intent = Intent(context, AddFoodActivity::class.java)
         startActivity(intent)
         activity?.finish()

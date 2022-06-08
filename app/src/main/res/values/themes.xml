@@ -15,8 +15,13 @@
     </style>
 
     <style name="textTitle">
-        <item name="android:textSize">36sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="textPercent">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
 </resources>

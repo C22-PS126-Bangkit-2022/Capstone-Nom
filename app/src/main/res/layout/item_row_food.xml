@@ -3,19 +3,19 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
+    android:layout_margin="16dp"
+    card_view:cardCornerRadius="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img_item_food"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -26,16 +26,16 @@
             tools:src="@tools:sample/avatars"/>
 
         <TextView
+            style="@style/textTitle"
             android:id="@+id/tv_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/img_item_food"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_item_food"
-            card_view:layout_constraintTop_toTopOf="@+id/img_item_food"
-            tools:text="Name"/>
+            android:textAlignment="center"
+            card_view:layout_constraintEnd_toEndOf="@+id/img_item_food"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/img_item_food"
+            tools:text="Name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
