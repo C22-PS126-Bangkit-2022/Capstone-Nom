@@ -25,7 +25,11 @@
         android:id="@+id/navigation_history"
         android:name="com.bangkit.capstonenom.ui.fragment.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_navigation_history_to_foodDetailsFragment"
+            app:destination="@id/navigation_food_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"

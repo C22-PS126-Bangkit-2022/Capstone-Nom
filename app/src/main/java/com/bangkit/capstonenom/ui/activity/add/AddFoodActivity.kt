@@ -56,12 +56,6 @@ class AddFoodActivity : AppCompatActivity() {
         binding = ActivityAddFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val actionbar = supportActionBar
-        //set actionbar title
-        actionbar!!.title = "Back  "
-        //set back button
-        actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -73,10 +67,6 @@ class AddFoodActivity : AppCompatActivity() {
 
         binding.cameraButton.setOnClickListener { startTakePhoto() }
         binding.uploadButton.setOnClickListener { viewResult() }
-    }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 
     private fun viewResult() {

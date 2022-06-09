@@ -7,30 +7,81 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.capstonenom.adapter.HistoryFoodAdapter
 import com.bangkit.capstonenom.databinding.FragmentHistoryBinding
+import com.bangkit.capstonenom.model.FoodInformation
+import com.bangkit.capstonenom.utils.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
-
     private val binding get() = _binding!!
+    private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var historyAdapter: HistoryFoodAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val historyViewModel =
-            ViewModelProvider(this).get(HistoryViewModel::class.java)
-
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val textView: TextView = binding.tvWelcome
-        historyViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val factory = ViewModelFactory.getInstance(requireContext())
+        historyViewModel =
+            ViewModelProvider(this, factory)[HistoryViewModel::class.java]
+
+        setAdapter()
+        historyViewModel.getAllFoodHistory().observe(viewLifecycleOwner) {
+            updateData(it)
         }
-        return root
+
+        recyclerView()
+    }
+
+    private fun recyclerView() {
+        with(binding.rvHistoryList) {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = historyAdapter
+        }
+    }
+
+    private fun updateData(data: List<FoodInformation>?) {
+        if (data != null && data.isNotEmpty()) {
+            historyAdapter.setData(data)
+            binding.tvNoHist.visibility = View.GONE
+            binding.rvHistoryList.visibility = View.VISIBLE
+        } else {
+            binding.tvNoHist.visibility = View.VISIBLE
+            binding.rvHistoryList.visibility = View.GONE
+        }
+    }
+
+    private fun setAdapter() {
+        historyAdapter = HistoryFoodAdapter()
+        historyAdapter.onItemClick = {
+            val action = HistoryFragmentDirections.actionNavigationHistoryToFoodDetailsFragment(
+                id = it.id
+            )
+            findNavController().navigate(action)
+        }
+        historyAdapter.onDeleteIconClick = {
+            historyViewModel.deleteFoodHistory(it)
+            Snackbar.make(
+                requireView(),
+                "${it.name.capitalize(Locale.ROOT)} is removed from search history.",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
 
     override fun onDestroyView() {

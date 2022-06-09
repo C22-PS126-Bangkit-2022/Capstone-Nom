@@ -28,6 +28,18 @@
     <string name="nutrient_amount">%.2f%s</string>
     <string name="serving_size">Serving Size\n%d%s</string>
     <string name="percentage">%.2f%%</string>
+    <string name="desc_history">Your Food Calories History</string>
+    <string name="description">Your health is a reflection of what you eat</string>
+    <string name="fill">_______________________________________________________________</string>
+
+    <string name="password_more_6">Password must be more than 6 characters</string>
+    <string name="error_email">Please enter your e-mail</string>
+    <string name="invalid_email">Invalid email!</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="desc_signup">don\'t have an account yet?</string>
+    <string name="signup">SignUp</string>
+    <string name="project_name">NOM</string>
 
 
 </resources>

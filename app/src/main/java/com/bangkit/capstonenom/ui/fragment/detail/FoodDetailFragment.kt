@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions
 class FoodDetailFragment : Fragment() {
     private var id: Int? = null
     private lateinit var adapter: FoodDetailAdapter
+    private var isHistoryPage = false
     private lateinit var binding: FragmentFoodDetailBinding
     private lateinit var detailsViewModel: FoodDetailViewModel
     private var foodInformation: FoodInformation? = null
@@ -24,6 +25,7 @@ class FoodDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             id = it.getInt(ID)
+            isHistoryPage = it.getBoolean(HIST)
         }
         setHasOptionsMenu(true)
     }
@@ -49,8 +51,25 @@ class FoodDetailFragment : Fragment() {
             rvNutrients.layoutManager = LinearLayoutManager(context)
             rvNutrients.setHasFixedSize(true)
         }
-
+        setUpObserver()
         setInformationFood()
+    }
+
+    private fun setUpObserver() {
+        if (isHistoryPage) {
+            detailsViewModel.getFoodHistoryById(id as Int).observe(viewLifecycleOwner) {
+                foodInformation = it
+                information(it)
+            }
+        } else {
+            detailsViewModel.getFoodDetail(id as Int).observe(viewLifecycleOwner) {
+                foodInformation = it
+                information(it)
+                if (it.id != -1) {
+                    detailsViewModel.addToHistory(it)
+                }
+            }
+        }
     }
 
     private fun information(foodInformation: FoodInformation?) {
@@ -92,5 +111,6 @@ class FoodDetailFragment : Fragment() {
 
     companion object {
         private const val ID = "id"
+        private const val HIST = "history"
     }
 }

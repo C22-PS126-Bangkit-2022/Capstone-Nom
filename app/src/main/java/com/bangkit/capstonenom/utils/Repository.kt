@@ -1,10 +1,27 @@
 package com.bangkit.capstonenom.utils
 
+import androidx.lifecycle.LiveData
+import com.bangkit.capstonenom.local.room.HistoryFoodDao
 import com.bangkit.capstonenom.model.Food
 import com.bangkit.capstonenom.model.FoodInformation
 import com.bangkit.capstonenom.response.*
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-class Repository(private val dataSource: DataSource) {
+class Repository(private val dataSource: DataSource,
+                 private val mHistoryFoodDao: HistoryFoodDao
+) {
+    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+
+    companion object {
+        @Volatile
+        private var instance: Repository? = null
+        fun getInstance(dataSource: DataSource, foodDao: HistoryFoodDao): Repository =
+            instance ?: synchronized(this) {
+                instance ?: Repository(dataSource, foodDao).apply { instance = this }
+            }
+    }
+
 
     suspend fun getFoodList(name: String): ArrayList<Food> {
         val foodList: ArrayList<Food> = arrayListOf()
@@ -44,6 +61,18 @@ class Repository(private val dataSource: DataSource) {
         return foodList
     }
 
+    fun getAllFoodHistory(): LiveData<List<FoodInformation>> = mHistoryFoodDao.getAllFood()
+
+    fun getFoodHistoryById(id: Int): LiveData<FoodInformation> = mHistoryFoodDao.getFoodById(id)
+
+    fun insert(food: FoodInformation) {
+        executorService.execute { mHistoryFoodDao.insert(food) }
+    }
+
+    fun delete(food: FoodInformation) {
+        executorService.execute { mHistoryFoodDao.delete(food) }
+    }
+
     suspend fun getDetailFood(id: Int): FoodInformation {
         try {
             val foodInformationResponse = dataSource.getDetailFood(id)
@@ -78,12 +107,5 @@ class Repository(private val dataSource: DataSource) {
         }
     }
 
-    companion object {
-        @Volatile
-        private var instance: Repository? = null
-        fun getInstance(dataSource: DataSource): Repository =
-            instance ?: synchronized(this) {
-                instance ?: Repository(dataSource).apply { instance = this }
-            }
-    }
+
 }

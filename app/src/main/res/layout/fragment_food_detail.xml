@@ -35,7 +35,7 @@
         style="@style/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="248dp"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,12 +45,12 @@
         android:id="@+id/tv_serving_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Serving size \n100g" />
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        tools:text="Serving size 100g" />
 
     <TextView
         android:id="@+id/tv_carbs"

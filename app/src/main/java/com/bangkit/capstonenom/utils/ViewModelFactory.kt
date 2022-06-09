@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstonenom.injection.Injection
 import com.bangkit.capstonenom.ui.fragment.detail.FoodDetailViewModel
+import com.bangkit.capstonenom.ui.fragment.history.HistoryViewModel
 import com.bangkit.capstonenom.ui.fragment.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val mRepository: Repository) :
@@ -18,6 +19,9 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
             }
             modelClass.isAssignableFrom(FoodDetailViewModel::class.java) -> {
                 FoodDetailViewModel(mRepository) as T
+            }
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+                HistoryViewModel(mRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

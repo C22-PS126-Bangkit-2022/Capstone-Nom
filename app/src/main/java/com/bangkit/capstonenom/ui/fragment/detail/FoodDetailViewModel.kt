@@ -23,4 +23,9 @@ class FoodDetailViewModel(private val mRepository: Repository): ViewModel() {
         }
         return food
     }
+    fun addToHistory(foodDetails: FoodInformation) = mRepository.insert(foodDetails)
+
+//    fun deleteFromHistory(foodDetails: FoodInformation) = mRepository.delete(foodDetails)
+
+    fun getFoodHistoryById(id: Int) = mRepository.getFoodHistoryById(id)
 }
