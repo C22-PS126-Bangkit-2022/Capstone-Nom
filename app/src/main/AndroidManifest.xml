@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneNom">
         <activity
+            android:name=".ui.activity.register.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.camera.CameraActivity"
             android:exported="false" />
         <activity
@@ -33,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.bangkit.capstonenom"

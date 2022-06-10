@@ -37,7 +37,13 @@
     <string name="login">Login</string>
     <string name="desc_signup">don\'t have an account yet?</string>
     <string name="signup">SignUp</string>
-    <string name="project_name">NOM</string>
+
+    <string name="project_name">Nom Food Classification</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="signin">SignIn</string>
+    <string name="register">Register</string>
+    <string name="desc_login">Start Health life, know what you eat</string>
+    <string name="txt_signin">Or SignIn with</string>
 
 
 </resources>

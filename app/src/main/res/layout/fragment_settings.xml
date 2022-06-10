@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/blue"
         android:layout_marginTop="8dp"
         android:text="@string/settings" />
 
@@ -158,6 +160,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/green"
         android:text="@string/logout" />
 
 

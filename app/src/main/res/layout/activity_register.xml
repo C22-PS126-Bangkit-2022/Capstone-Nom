@@ -4,47 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.login.LoginActivity">
+    tools:context=".ui.activity.register.RegisterActivity">
 
-    <ImageView
-        android:id="@+id/shape"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="330dp"
-        android:src="@drawable/shape"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/project_name"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/iv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="294dp"
-        android:src="@drawable/ic_logo"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <TextView
-        android:id="@+id/tv_desc_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/desc_login"
-        android:textStyle="bold"
-        android:fontFamily="cursive"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_login" />
 
     <com.bangkit.capstonenom.customview.textCustomView
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/email"
@@ -53,7 +32,7 @@
         android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_login"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_login"/>
 
     <com.bangkit.capstonenom.customview.textCustomView
         android:id="@+id/edt_password"
@@ -74,9 +53,9 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="46dp"
         android:backgroundTint="@color/green"
-        android:text="@string/login"
+        android:text="@string/register"
         android:translationZ="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login">
@@ -96,30 +75,18 @@
             android:id="@+id/tv_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/desc_signup"/>
+            android:text="@string/have_account"/>
 
         <TextView
-            android:id="@+id/tvRegister"
+            android:id="@+id/tv_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-
             android:textColor="@color/light_green"
             android:layout_marginStart="4dp"
-            android:text="@string/signup"/>
+            android:text="@string/signin"/>
 
     </LinearLayout>
-
-
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
-        android:layout_width="346dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -130,4 +97,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
