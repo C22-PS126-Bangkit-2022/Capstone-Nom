@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.databinding.ItemRowDetailFoodBinding
-import com.bangkit.capstonenom.response.Nutrition
 import com.bangkit.capstonenom.response.NutritionItem
 import java.util.ArrayList
-import kotlin.math.roundToInt
 
 class FoodDetailAdapter(private val context: Context) :
     RecyclerView.Adapter<FoodDetailAdapter.ListViewHolder>() {
@@ -41,7 +39,8 @@ class FoodDetailAdapter(private val context: Context) :
         fun bind(food: NutritionItem) {
             binding.apply {
                 tvNutritionName.text = food.name
-                tvNutritionAmount.text = context.getString(R.string.nutrient_amount, food.amount, food.unit)
+                tvNutritionAmount.text =
+                    context.getString(R.string.nutrient_amount, food.amount, food.unit)
             }
         }
     }

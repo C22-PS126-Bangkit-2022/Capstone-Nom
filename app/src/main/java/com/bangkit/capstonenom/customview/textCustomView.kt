@@ -52,13 +52,7 @@ class textCustomView : AppCompatEditText {
                         error = context.getString(R.string.password_more_6)
                     }
                 }
-//                else {
-//                    if (s.isEmpty()) {
-//                        error = context.getString(R.string.name_invalid)
-//                    }
-//                }
             }
-
 
 
             override fun afterTextChanged(s: Editable?) {

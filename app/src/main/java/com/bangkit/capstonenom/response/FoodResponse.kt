@@ -1,6 +1,5 @@
 package com.bangkit.capstonenom.response
 
-import com.bangkit.capstonenom.model.Food
 import com.google.gson.annotations.SerializedName
 
 data class FoodResponse(

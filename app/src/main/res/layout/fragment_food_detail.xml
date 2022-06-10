@@ -20,13 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="236dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:alpha="0.5"
         android:background="@drawable/bg_detail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +34,7 @@
         style="@style/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="240dp"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -130,8 +129,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_nutrients"
         android:layout_width="0dp"
-        android:layout_height="270dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="256dp"
         android:layout_marginBottom="16dp"
         android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="@+id/bg_white"

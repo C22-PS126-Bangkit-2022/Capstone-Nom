@@ -22,7 +22,6 @@ import com.bangkit.capstonenom.ui.fragment.settings.darkmode.ViewModelFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 
-
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class SettingsFragment : Fragment() {

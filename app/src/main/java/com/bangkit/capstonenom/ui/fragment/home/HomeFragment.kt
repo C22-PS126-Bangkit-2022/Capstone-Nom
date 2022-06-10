@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -16,7 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.capstonenom.adapter.FoodAdapter
 import com.bangkit.capstonenom.databinding.FragmentHomeBinding
 import com.bangkit.capstonenom.ui.activity.add.AddFoodActivity
@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
     @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (requireActivity() as AppCompatActivity).supportActionBar!!.hide()
         _binding = FragmentHomeBinding.bind(view)
 
         binding.btnTakeFood.setOnClickListener {
@@ -58,7 +58,8 @@ class HomeFragment : Fragment() {
         recyclerView()
 
         val pref = SettingPreferences.getInstance(requireContext().dataStore)
-        val settingsViewModel = ViewModelProvider(this,
+        val settingsViewModel = ViewModelProvider(
+            this,
             com.bangkit.capstonenom.ui.fragment.settings.darkmode.ViewModelFactory(pref)
         ).get(
             SettingsViewModel::class.java
@@ -105,7 +106,7 @@ class HomeFragment : Fragment() {
 
     private fun recyclerView() {
         with(binding.rvFood) {
-            layoutManager = GridLayoutManager(context,2)
+            layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
             adapter = foodAdapter
         }
@@ -118,13 +119,14 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun getFoodDetail(){
+    private fun getFoodDetail() {
         foodAdapter = FoodAdapter()
         foodAdapter.onItemClick = { selectedFood ->
-            intentToDetail(selectedFood.id)}
+            intentToDetail(selectedFood.id)
+        }
     }
 
-    private fun intentToDetail(id: Int){
+    private fun intentToDetail(id: Int) {
         val action = HomeFragmentDirections.actionNavigationToDetail(id = id)
         findNavController().navigate(action)
     }

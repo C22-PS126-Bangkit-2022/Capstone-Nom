@@ -21,6 +21,7 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
             preferences[THEME_KEY] = isDarkModeActive
         }
     }
+
     companion object {
         @Volatile
         private var INSTANCE: SettingPreferences? = null

@@ -41,6 +41,7 @@ class FoodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         showLoading(true)
         val viewModel = ViewModelFactory.getInstance(requireContext())
         detailsViewModel = ViewModelProvider(this, viewModel)[FoodDetailViewModel::class.java]

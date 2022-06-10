@@ -16,12 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_food"
-        android:name="com.bangkit.capstonenom.ui.fragment.food.FoodFragment"
-        android:label="@string/title_food"
-        tools:layout="@layout/fragment_food" />
-
-    <fragment
         android:id="@+id/navigation_history"
         android:name="com.bangkit.capstonenom.ui.fragment.history.HistoryFragment"
         android:label="@string/title_history"

@@ -4,22 +4,16 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.databinding.ActivityAddFoodBinding
 import com.bangkit.capstonenom.ui.activity.camera.CameraActivity
 import com.bangkit.capstonenom.utils.rotateBitmap
 import java.io.File
-
 
 class AddFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddFoodBinding
@@ -30,6 +24,7 @@ class AddFoodActivity : AppCompatActivity() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -47,6 +42,7 @@ class AddFoodActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -93,7 +89,6 @@ class AddFoodActivity : AppCompatActivity() {
             binding.previewImageView.setImageBitmap(result)
         }
     }
-
 
 
 }

@@ -2,7 +2,7 @@ package com.bangkit.capstonenom.response
 
 import com.google.gson.annotations.SerializedName
 
-data class FoodInformationResponse (
+data class FoodInformationResponse(
 
     @field:SerializedName("id")
     val id: Int,

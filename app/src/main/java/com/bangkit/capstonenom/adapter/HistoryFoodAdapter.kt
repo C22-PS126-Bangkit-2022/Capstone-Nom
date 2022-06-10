@@ -10,7 +10,7 @@ import com.bangkit.capstonenom.model.FoodInformation
 import com.bumptech.glide.Glide
 import java.util.*
 
-class HistoryFoodAdapter: RecyclerView.Adapter<HistoryFoodAdapter.ListViewHolder>() {
+class HistoryFoodAdapter : RecyclerView.Adapter<HistoryFoodAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<FoodInformation>()
     var onItemClick: ((FoodInformation) -> Unit)? = null

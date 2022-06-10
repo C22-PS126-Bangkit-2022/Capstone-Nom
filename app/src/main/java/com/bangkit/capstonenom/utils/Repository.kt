@@ -8,8 +8,9 @@ import com.bangkit.capstonenom.response.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class Repository(private val dataSource: DataSource,
-                 private val mHistoryFoodDao: HistoryFoodDao
+class Repository(
+    private val dataSource: DataSource,
+    private val mHistoryFoodDao: HistoryFoodDao
 ) {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 

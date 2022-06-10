@@ -34,6 +34,7 @@ class CameraActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         binding.captureImage.setOnClickListener { takePhoto() }
     }
+
     public override fun onResume() {
         super.onResume()
         hideSystemUI()
@@ -79,6 +80,7 @@ class CameraActivity : AppCompatActivity() {
             }
         )
     }
+
     private fun startCamera() {
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)

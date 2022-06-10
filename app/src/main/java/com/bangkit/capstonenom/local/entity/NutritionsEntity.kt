@@ -1,6 +1,5 @@
 package com.bangkit.capstonenom.local.entity
 
-
 import androidx.room.TypeConverter
 import com.bangkit.capstonenom.response.NutritionItem
 

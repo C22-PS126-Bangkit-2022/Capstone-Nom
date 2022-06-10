@@ -47,8 +47,10 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ListViewHolder>() {
                     .into(imgItemFood)
             }
         }
-        init {binding.root.setOnClickListener {
-            onItemClick?.invoke(listData[adapterPosition])
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(listData[adapterPosition])
             }
         }
     }

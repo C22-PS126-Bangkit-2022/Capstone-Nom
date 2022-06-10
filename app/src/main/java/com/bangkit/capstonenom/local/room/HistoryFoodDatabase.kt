@@ -15,18 +15,21 @@ import com.bangkit.capstonenom.model.FoodInformation
     WeightPerServingEntity::class,
     CaloriesEntity::class
 )
-abstract class HistoryFoodDatabase: RoomDatabase() {
+abstract class HistoryFoodDatabase : RoomDatabase() {
     abstract fun historyFoodDao(): HistoryFoodDao
 
     companion object {
         @Volatile
         private var INSTANCE: HistoryFoodDatabase? = null
+
         @JvmStatic
         fun getDatabase(context: Context): HistoryFoodDatabase {
             if (INSTANCE == null) {
                 synchronized(HistoryFoodDatabase::class.java) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        HistoryFoodDatabase::class.java, "food_database")
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        HistoryFoodDatabase::class.java, "food_database"
+                    )
                         .build()
                 }
             }
