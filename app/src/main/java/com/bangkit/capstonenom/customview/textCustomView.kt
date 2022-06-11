@@ -51,6 +51,10 @@ class textCustomView : AppCompatEditText {
                     if (s.length < 6) {
                         error = context.getString(R.string.password_more_6)
                     }
+                } else {
+                    if (s.isEmpty()) {
+                        error = context.getString(R.string.invalid_name)
+                    }
                 }
             }
 

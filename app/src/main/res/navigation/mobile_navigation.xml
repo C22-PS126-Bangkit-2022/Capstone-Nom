@@ -29,7 +29,11 @@
         android:id="@+id/navigation_settings"
         android:name="com.bangkit.capstonenom.ui.fragment.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_navigation_history_to_foodDetailsFragment"
+            app:destination="@id/navigation_food_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_food_detail"

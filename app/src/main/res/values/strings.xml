@@ -33,6 +33,7 @@
     <string name="password_more_6">Password must be more than 6 characters</string>
     <string name="error_email">Please enter your e-mail</string>
     <string name="invalid_email">Invalid email!</string>
+    <string name="invalid_name">Invalid Name</string>
     <string name="email">Email</string>
     <string name="login">Login</string>
     <string name="desc_signup">don\'t have an account yet?</string>
@@ -44,6 +45,11 @@
     <string name="register">Register</string>
     <string name="desc_login">Start Health life, know what you eat</string>
     <string name="txt_signin">Or SignIn with</string>
+    <string name="desc_home">Haloo, Welcome</string>
+    <string name="account">Your Email</string>
+    <string name="id_user">ID User</string>
+    <string name="copyright">© 2022 Capstone Team C22-PS126</string>
+    <string name="desc_register">Hello, Don\'t have an account yet? register to enjoy our project features.</string>
 
 
 </resources>

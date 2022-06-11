@@ -78,12 +78,12 @@ class LoginActivity : AppCompatActivity() {
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
-            loginFirebase(email,password)
+            login(email,password)
         }
 
     }
 
-    private fun loginFirebase(email: String, password: String) {
+    private fun login(email: String, password: String) {
         showLoading(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
@@ -92,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
+                    showLoading(false)
                     Toast.makeText(this, "${it.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstonenom.R
 import com.bangkit.capstonenom.databinding.FragmentSettingsBinding
 import com.bangkit.capstonenom.ui.activity.login.LoginActivity
+import com.bangkit.capstonenom.ui.activity.profile.ProfileActivity
+import com.bangkit.capstonenom.ui.fragment.history.HistoryFragment
 import com.bangkit.capstonenom.ui.fragment.settings.darkmode.SettingPreferences
 import com.bangkit.capstonenom.ui.fragment.settings.darkmode.ViewModelFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -55,16 +57,16 @@ class SettingsFragment : Fragment() {
             SettingsViewModel::class.java
         )
 
-        settingsViewModel.getThemeSettings().observe(this,
-            { isDarkModeActive: Boolean ->
-                if (isDarkModeActive) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    switchTheme.isChecked = true
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    switchTheme.isChecked = false
-                }
-            })
+        settingsViewModel.getThemeSettings().observe(this
+        ) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                switchTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
+            }
+        }
 
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingsViewModel.saveThemeSetting(isChecked)
@@ -75,6 +77,16 @@ class SettingsFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             Logout()
         }
+        binding.text1.setOnClickListener {
+            profileAccount()
+        }
+    }
+
+
+
+    private fun profileAccount() {
+        val intent = Intent(context, ProfileActivity::class.java)
+        startActivity(intent)
     }
 
     private fun Logout() {

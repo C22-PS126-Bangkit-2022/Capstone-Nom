@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         binding.tvSignIn.setOnClickListener{
             val intent = Intent (this, LoginActivity::class.java)
@@ -28,10 +28,15 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener{
-
+            val username = binding.edtUsername.text.toString()
             val email = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
 
+            if (username.isEmpty()){
+                binding.edtUsername.error = "Name cannot be empty"
+                binding.edtUsername.requestFocus()
+                return@setOnClickListener
+            }
             if (email.isEmpty()){
                 binding.edtEmail.error = "Email is required"
                 binding.edtPassword.requestFocus()
@@ -55,13 +60,13 @@ class RegisterActivity : AppCompatActivity() {
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
-            loginFirebase(email,password)
+            register(username, email, password)
         }
     }
 
-    private fun loginFirebase(email: String, password: String) {
+    private fun register(username: String, email: String, password: String) {
         showLoading(true)
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
                     Toast.makeText(this, "Successful registration", Toast.LENGTH_SHORT).show()

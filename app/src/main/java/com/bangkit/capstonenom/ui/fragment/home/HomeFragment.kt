@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
@@ -23,11 +24,15 @@ import com.bangkit.capstonenom.ui.activity.add.AddFoodActivity
 import com.bangkit.capstonenom.ui.fragment.settings.SettingsViewModel
 import com.bangkit.capstonenom.ui.fragment.settings.darkmode.SettingPreferences
 import com.bangkit.capstonenom.utils.ViewModelFactory
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class HomeFragment : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +44,17 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        val root: View = binding.root
+
+        val textEmail: TextView = binding.tvEmail
+
+        auth = Firebase.auth
+        val user = auth.currentUser
+
+        if (user != null) {
+            textEmail.setText(user.email.toString()).toString()
+        }
+        return root
     }
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -51,6 +66,7 @@ class HomeFragment : Fragment() {
         binding.btnTakeFood.setOnClickListener {
             goTo()
         }
+
 
         searchFood()
         viewModel()
@@ -134,7 +150,7 @@ class HomeFragment : Fragment() {
     private fun goTo() {
         val intent = Intent(context, AddFoodActivity::class.java)
         startActivity(intent)
-        activity?.finish()
+
     }
 
     private fun showLoading(state: Boolean) {
