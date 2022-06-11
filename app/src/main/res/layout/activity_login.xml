@@ -26,7 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-
     <TextView
         android:id="@+id/tv_desc_login"
         android:layout_width="wrap_content"
@@ -82,44 +81,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
-    <LinearLayout
-        android:id="@+id/layoutTextRegister"
+    <TextView
+        android:id="@+id/tv_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+        android:text="@string/desc_signup"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-        <TextView
-            android:id="@+id/tv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_signup"/>
-
-        <TextView
-            android:id="@+id/tvRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-
-            android:textColor="@color/light_green"
-            android:layout_marginStart="4dp"
-            android:text="@string/signup"/>
-
-    </LinearLayout>
-
-
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/signup"
+        android:textColor="@color/light_green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_account"
+        app:layout_constraintStart_toEndOf="@+id/tv_account"
+        app:layout_constraintTop_toTopOf="@+id/tv_account" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/signInButton"
-        android:layout_width="346dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegister"
+        app:layout_constraintStart_toStartOf="@+id/tv_account"
+        app:layout_constraintTop_toBottomOf="@+id/tv_account" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

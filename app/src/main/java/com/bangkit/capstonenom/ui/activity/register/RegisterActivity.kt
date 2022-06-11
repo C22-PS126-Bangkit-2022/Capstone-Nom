@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnLogin.setOnClickListener{
+        binding.btnRegister.setOnClickListener{
             val username = binding.edtUsername.text.toString()
             val email = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
@@ -37,25 +37,25 @@ class RegisterActivity : AppCompatActivity() {
                 binding.edtUsername.requestFocus()
                 return@setOnClickListener
             }
-            if (email.isEmpty()){
+            else if (email.isEmpty()){
                 binding.edtEmail.error = "Email is required"
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 binding.edtEmail.error = "Invalid Email"
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
 
-            if (password.isEmpty()){
+            else if (password.isEmpty()){
                 binding.edtPassword.error = "Password is required"
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
 
-            if (password.length < 6){
+            else if (password.length < 6){
                 binding.edtPassword.error = "Password must be more than 6 characters"
                 binding.edtPassword.requestFocus()
                 return@setOnClickListener
@@ -80,10 +80,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showLoading(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+        binding.progressBar.visibility = if (state) View.VISIBLE else View.GONE
     }
 }
