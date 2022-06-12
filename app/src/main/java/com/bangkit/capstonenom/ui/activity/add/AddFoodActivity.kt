@@ -4,8 +4,10 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -13,10 +15,12 @@ import androidx.core.content.ContextCompat
 import com.bangkit.capstonenom.databinding.ActivityAddFoodBinding
 import com.bangkit.capstonenom.ui.activity.camera.CameraActivity
 import com.bangkit.capstonenom.utils.rotateBitmap
+import com.bangkit.capstonenom.utils.uriToFile
 import java.io.File
 
 class AddFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddFoodBinding
+    private var getFile: File? = null
 
     companion object {
         const val CAMERA_X_RESULT = 200
@@ -62,6 +66,7 @@ class AddFoodActivity : AppCompatActivity() {
         }
 
         binding.cameraButton.setOnClickListener { startTakePhoto() }
+        binding.galleryButton.setOnClickListener { startGallery() }
         binding.uploadButton.setOnClickListener { viewResult() }
     }
 
@@ -90,5 +95,26 @@ class AddFoodActivity : AppCompatActivity() {
         }
     }
 
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
 
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this@AddFoodActivity)
+            getFile = myFile
+            binding.previewImageView.setImageURI(selectedImg)
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        binding.progressBar.visibility = if (state) View.VISIBLE else View.GONE
+    }
 }

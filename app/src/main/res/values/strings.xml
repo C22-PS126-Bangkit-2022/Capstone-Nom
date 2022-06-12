@@ -50,6 +50,8 @@
     <string name="id_user">ID User</string>
     <string name="copyright">© 2022 Capstone Team C22-PS126</string>
     <string name="desc_register">Hello, Don\'t have an account yet? register to enjoy our project features.</string>
+    <string name="gallery">Gallery</string>
+    <string name="food_name">Food Name</string>
 
 
 </resources>
